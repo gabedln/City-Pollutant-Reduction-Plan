@@ -1,0 +1,27 @@
+options(digits=1)
+
+reductionsPerUnit = data.frame(
+  MitigationOptions = c("Large Solar Park","Small Solar Installations", "Wind Farm", "Gas-to-rewnewables conversion", "Boiler Retrofit", "Catalytic Converters for Buses", "Diesel Bus Replacement", "Traffic Signal/Flow Upgrade", "Low-Emission Stove Program", "Residential Insulation/Efficiency","Industrial Scrubers", "Waste Methane Capture System", "Landfill Gas-to-energy", "Reforestation (acre-package)","Urban Tree Canopy Program (street trees)","Industrial Energy Efficiency Retrofit","Natural Gas Leak Repair","Agricultural Methane Reduction", "Clean Cookstove & Fuel Switching (community scale)", "Rail Electrification", "EV Charging Infrastructure", "Biochar for soils (per project unit)","Industrial VOC","Heavy-Duty Truck Retrofit", "Port/Harbor Electrification","Black Carbon reduction","Wetlands restoration","Household LPG conversion program","Industrial process change","Behavioral demand-reduction program"),
+  Costs = c(4000,1200,3800,3200,1400,2600,5000,1000,180,900,4200,3600,3400,220,300,1600,1800,2800,450,6000,2200,1400,2600,4200,4800,600,1800,700,5000,400),
+  CO2 = c(60,18,55,25,20,30,48,12,2,15,6,28,24,3.5,4.2,22,10,8,3.2,80,20,6,2,36,28,1.8,10,2.5,3,9),
+  NO = c(0,0,0,1,0.9,2.8,3.2,0.6,0.02,0.1,0.4,0.2,0.15,0.04,0.06,0.5,0.05,0.02,0.04,2,0.3,0.01,0.01,2.2,1.9,0.02,0.03,0.03,0.02,0.4),
+  SO2 = c(0,0,0,0.2,0.4,0.6,0.9,0.1,0.01,0.05,6,0.1,0.05,0.02,0.01,0.3,0.01,0.01,0.02,0.4,0.05,0,0,0.6,0.8,0.01,0.02,0.01,0.01,0.05),
+  PM2.5 = c(0),
+  CH4 = c(0),
+  VOC = c(0),
+  CO = c(0),
+  NH3 = c(0),
+  BC = c(0),
+  N20 = c(0)
+)
+
+
+print(reductionsPerUnit)
+
+# Mathematical Formula for Pollution Reduction Solver
+# A set M = {m1, m2, ..., mn} containing n mitigation projects (this varies depending on the user)
+# A set P = {p1, p2, ..., pm} containing m pollutants to be reduced. (doesn't change, consistent)
+
+# Parameters:
+# cost - 1 <= i <= n (meaning that the cost of the mitigation project must be greater than 1 but less than n, where n is the mitigation projects)
+# xi - 1 <= i <= n (unknown number of mitigation project mi must be implemented)
