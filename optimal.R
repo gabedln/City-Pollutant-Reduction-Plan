@@ -1,6 +1,6 @@
 setwd("C:/Users/Gabe/Downloads/cmsc150_finalproj")
-source("project_draft.R")
-source("functions.R")
+source("simplex.R")
+source("dataset.R")
 
 
 # x1, x2, x3... xn = unknown variables are the units for each project selected
@@ -102,7 +102,6 @@ for(i in 1:30){
 }
 choice = c(1, 2, 4, 6, 7, 9, 11, 13, 16, 18, 20, 22, 24, 27, 30)
 
-minTableau = buildTableau(choice)
-print(minTableau)
+minTableau = buildTableau(allSelect)
 getTable(minTableau)
 
