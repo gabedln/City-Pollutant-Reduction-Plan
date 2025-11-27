@@ -1,3 +1,4 @@
+
 NegativeCheck = function(tableau){ # function to check the last row of tableau
   for(i in 1:ncol(tableau)){ # iterates through every element in the last row of tableau
     if(tableau[nrow(tableau),i]<0){ # if detects 0, then
@@ -63,19 +64,21 @@ Simplex = function(tableau, isMax){ # tableau is matrix of initial, isMax deteri
     pcol_index = FindMin(tableau[nrow(tableau),]) # Uses FindMin function
     prow_index = FindPivotRow(pcol_index, tableau) # Uses FindPivotRow function
     
-    if(prow_index==-1){
+    if(prow_index==-1){ # This means that there is no valid row to be a pivot row
       labeled_list = list(tableau_history = tableau_history, basic_solution_history = basic_solution_history, Z=NA) # initializes labeled list
       return (labeled_list)
     }
     
     tableau[prow_index,] = tableau[prow_index,] / tableau[prow_index,pcol_index] # normalizes pivot row
-    for(i in 1:nrow(tableau)){ #elimination
+    for(i in 1:nrow(tableau)){ # elimination
       if(i==prow_index){
         next
       }
       tableau[i,] = tableau[i,] - (tableau[prow_index,]*tableau[i,pcol_index])
     }
+    
     tableau_history[[length(tableau_history)+1]] = tableau
+    
     
     if(isMax){ # Way of determining basic solution for maximization
       for(i in 1:(ncol(tableau)-1)){
@@ -98,7 +101,6 @@ Simplex = function(tableau, isMax){ # tableau is matrix of initial, isMax deteri
       }
       basic_solution_history[[(length(basic_solution_history)+1)]] = basic_solution
     }
-    
   } # end of while loop bracket
   basicSolution = basic_solution_history[[length(basic_solution_history)]]
   labeled_list = list(finalTableau = tableau, basicSolution = basicSolution, Z = basicSolution[length(basicSolution)], tableau_history = tableau_history, basic_solution_history = basic_solution_history) # initializes labeled list
